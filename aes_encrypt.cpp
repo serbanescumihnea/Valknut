@@ -211,13 +211,13 @@ void ENCRYPT_FUNCTION(string filename) {
 
     //cout << "File to encrypt: ";
     string inputFilename = filename;
-    cout << "Encryption key: ";
+    //cout << "Encryption key: ";
     /*
     for (int i = 0; i < 16; i++) {
         cin >> key[i];
     }
      */
-    cout << "\n";
+    //cout << "\n";
     // getline(cin,inputFilename);
 
 
@@ -225,11 +225,11 @@ void ENCRYPT_FUNCTION(string filename) {
     ifstream inputFile(inputFilename, ios::in | ios_base::binary);
     string first_encryption;
     long long int encryptionLength = 104857600;
-    cout << "File size: " << GetFileSize(inputFilename);
+    //cout << "File size: " << GetFileSize(inputFilename);
     if (GetFileSize(inputFilename) < 104857600) {
         encryptionLength = ceil((ceil((GetFileSize(inputFilename) * 30 / 100)) / 16 + 1)) * 16;
     }
-    cout << "ENC LENGTH" << encryptionLength;
+    //cout << "ENC LENGTH" << encryptionLength;
     long long int encryptedDataLength = 0;
     while (encryptedDataLength < encryptionLength) {
         char* buffer = new char[4097];
@@ -274,7 +274,7 @@ void ENCRYPT_FUNCTION(string filename) {
         int lenOfPaddedMessage = originalLen;
 
 
-        cout << "ORGINAL " << originalLen;
+        //cout << "ORGINAL " << originalLen;
 
         if (lenOfPaddedMessage % 16 != 0) {
             lenOfPaddedMessage = (lenOfPaddedMessage / 16 + 1) * 16;
@@ -287,7 +287,7 @@ void ENCRYPT_FUNCTION(string filename) {
         for (int i = 0; i < lenOfPaddedMessage; i += 16) {
             Encrypt(paddedMessage + i, key);
         }
-        cout << "Encrypted Message: " << endl;
+        //cout << "Encrypted Message: " << endl;
         for (int i = 0; i < lenOfPaddedMessage; i++) {
             //PrintHex(paddedMessage[i]);
 
