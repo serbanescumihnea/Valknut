@@ -9,7 +9,7 @@
 #include <fstream>
 #include <sys/stat.h>
 #include "enc_dec_engine.h"
-#include <math.h>
+#include <cmath>
 #include <filesystem>
 #pragma warning(disable:4996)
 using namespace std;
@@ -238,7 +238,7 @@ void Decrypt(unsigned char* message, unsigned char* key, unsigned char* decrypte
 void DECRYPT_FUNCTION(string filename) {
 
     unsigned char key[16]={'1','2','3','4','5','6','7','8','9','1','2','3','4','5','6','7'};
-   // cout << "Message to decrypt: ";
+
 
     ifstream inFile(filename, ios::in | ios::binary);
     size_t lastIndex = filename.find_last_of(".");
@@ -246,21 +246,14 @@ void DECRYPT_FUNCTION(string filename) {
     ofstream outFile(RawFilename, ios::binary);
 
     string inputFilename = filename;
-    //cout << "file size2: " << GetFileSize2("encryptedMessage2.txt");
+
     long long int decryptionLength = 104857600;
-    //cout << "File size: " << GetFileSize2(inputFilename);
+
     if (GetFileSize2(inputFilename) < 104857600) {
         decryptionLength = ceil((ceil((GetFileSize(inputFilename) * 30 / 100)) / 16 + 1)) * 16;
 
     }
-    /*
-    cout << "GRGRGRG" << decryptionLength;
-    cout << "Encryption key: ";
 
-    for (int i = 0; i < 16; i++) {
-        cin >> key[i];
-    }*/
-    //cout << "\n";
 
 
 
@@ -270,20 +263,7 @@ void DECRYPT_FUNCTION(string filename) {
 
         char* buffer = new char[4096];
         inFile.read(buffer, 4096);
-        //buffer[4096] = 0;
 
-        //cout << "MESAJ: ";
-
-        //getline(inFile,message_string);
-        //inFile.close();
-
-        /*
-
-        string message_string(buffer);
-
-        char* message = new char[message_string.size() + 1];
-        strcpy(message, message_string.c_str());
-        */
 
 
         int n = 4096;
@@ -307,7 +287,7 @@ void DECRYPT_FUNCTION(string filename) {
         }
 
         for (int i = 0; i < 4096; i++) {
-            // cout << decryptedMessage[i];
+
 
             outFile << decryptedMessage[i];
 
@@ -322,6 +302,6 @@ void DECRYPT_FUNCTION(string filename) {
     inFile.close();
 
     fs::remove(filename);
-    //_getch();
+
 
 }
